@@ -1,31 +1,16 @@
-from django.shortcuts import render
 from .models import MyUser
-from rest_framework import status
 from .serializers import MyUserSerializer, ResetPasswordEmailRequestSerializer, SetNewPasswordSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import serializers
-from django.contrib.auth import authenticate, login, logout
-from django.core.mail import send_mail
-# from .utils import Util
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.utils.encoding import smart_str, force_str, smart_bytes, DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from .utils import send_email
-from django.shortcuts import redirect
-from django.http import HttpResponsePermanentRedirect
-import os
 from rest_framework import generics, status, views, permissions
-
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny, IsAuthenticatedOrReadOnly
-from django.core.mail import EmailMessage
-
-
-class CustomRedirect(HttpResponsePermanentRedirect):
-    allowed_schemes = [os.environ.get('APP_SCHEME'), 'http', 'https']
-
 
 # Create your views here.
 
